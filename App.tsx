@@ -1,6 +1,6 @@
 import { StatusBar, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Home from './rn/src/views/home'
+import Home from './src/view/home'
 
 export default function App2() {
   return (
