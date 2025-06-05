@@ -1,0 +1,12 @@
+// {
+//   "extends": "@react-native/typescript-config/tsconfig.json"
+// }
+{
+  "compilerOptions": {
+    "jsx": "react-jsx", // React 17+ 使用此配置
+    "jsxFactory": "React.createElement", // 指定 JSX 转换函数
+    "jsxFragmentFactory": "React.Fragment", // 指定 Fragment
+    "target": "ES6",
+    "module": "commonjs"
+  }
+}
