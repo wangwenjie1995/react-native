@@ -1,9 +1,9 @@
-import { Button, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 export default function index() {
     return (
         <ScrollView>
-            {/* <Button title="222"></Button> */}
+            <Button title="222"></Button>
             <View style={styles.container}>
                 <Text style={styles.itemBase}>Home1</Text>
                 <Text style={styles.itemBase}>Home2</Text>

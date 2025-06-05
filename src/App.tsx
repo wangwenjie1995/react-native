@@ -1,8 +1,8 @@
 import { StatusBar, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Home from './src/view/home'
+import Home from './views/home'
 
-export default function App2() {
+export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
