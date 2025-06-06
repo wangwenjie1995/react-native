@@ -1,20 +1,15 @@
-import { StatusBar, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Home from './views/home'
-import { NavigationContainer } from '@react-navigation/native';
+// In App.js in a new project
 
-export default function App() {
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackRouter from './navigation/StackRouter';
+
+function App() {
   return (
     <NavigationContainer>
-      <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar backgroundColor="#61dafb" />
-        <View>
-          <Home />
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <StackRouter></StackRouter>
     </NavigationContainer>
   );
 }
 
+export default App;
