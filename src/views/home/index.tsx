@@ -1,68 +1,36 @@
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useEffect } from "react";
+import { Button, Text, View } from "react-native";
 
-export default function index() {
+export default function Home({ navigation, route }) {
+    useEffect(() => {
+        if (route.params?.post) {
+
+        }
+    }, [route.params?.post])
+
     return (
-        <ScrollView>
-            <Button title="222"></Button>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-            <View style={styles.container}>
-                <Text style={styles.itemBase}>Home1</Text>
-                <Text style={styles.itemBase}>Home2</Text>
-                <Text style={styles.itemBase}>Home3</Text>
-            </View>
-        </ScrollView>
-    )
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Home Screen</Text>
+            <Text>route:{JSON.stringify(route)}</Text>
+            <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
+            <Button
+                onPress={() => navigation.setOptions({
+                    title: '已经修改了HOME页面的title',
+                    headerRight: () => <Button title="Setting"></Button>,
+                })}
+                title="修改了HOME页面的title"></Button>
+            <Button
+                onPress={() => navigation.navigate('SafeScreen', { name: 'SafeScreen' })}
+                title="SafeScreen页面"></Button>
+            <Button
+                onPress={() => navigation.navigate('ListScreen', { name: 'ListScreen' })}
+                title="ListScreen页面"></Button>
+            <Button
+                onPress={() => navigation.navigate('CreatePost', { name: 'CreatePost' })}
+                title="CreatePost页面"></Button>
+            <Button
+                onPress={() => navigation.navigate('TabNavigation', { screen: 'Feed' })}
+                title="TabNavigation页面"></Button>
+        </View>
+    );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        height: 200,
-        margin: 10,
-        borderWidth: 10,
-        borderColor: 'black',
-        color: 'red',
-    },
-    itemBase: {
-        height: 30,
-        borderWidth: 1,
-        borderColor: 'red',
-        backgroundColor: '#dfb',
-        padding: 4,
-        textAlign: 'center'
-    },
-    flexColumn: {
-        flexDirection: 'column',
-    },
-    flexRow: {
-        flexDirection: 'row',
-    },
-})

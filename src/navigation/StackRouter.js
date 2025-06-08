@@ -1,32 +1,36 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StatusBar, View, Text} from 'react-native';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import Home from '../views/home';
+import SafeScreen from '../views/safeScreen';
+import ListScreen from '../views/listScreen';
+import CreatePost from '../views/createPost';
+import TabNavigation from '../views/tabNavigation';
 const Stack = createNativeStackNavigator();
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-function SafeScreen() {
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <StatusBar backgroundColor="#61dafb" />
-        <View>
-          <Text>SafeScreen</Text>
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
-}
 
 export default function StackRouter() {
   return (
-    <Stack.Navigator initialRouteName="SafeScreen">
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: '首页',
+        }}>
+        {/* {props => <HomeScreen {...props} />} */}
+      </Stack.Screen>
       <Stack.Screen name="SafeScreen" component={SafeScreen} />
+      <Stack.Screen name="ListScreen" component={ListScreen} />
+      <Stack.Screen name="CreatePost" component={CreatePost} />
+      <Stack.Screen name="TabNavigation" component={TabNavigation} />
     </Stack.Navigator>
   );
 }
