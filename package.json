@@ -7,13 +7,15 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "web": "react-scripts start",
-    "web:build": "react-scripts build"
+    "web1": "react-scripts start",
+    "web2": "react-app-rewired start",
+    "web:build": "react-app-rewired build"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "6.5.14",
     "@react-navigation/native": "^6.x",
     "@react-navigation/native-stack": "^6.11.0",
+    "@react-navigation/stack": "^6.4.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.2",

@@ -1,7 +1,11 @@
+import { StackScreenProps } from "@react-navigation/stack";
 import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, TextInput } from "react-native";
+import { RootStackParamList } from "../../navigation/type";
 
-export default function CreatePost({ navigation, route }) {
+type props = StackScreenProps<RootStackParamList, 'CreatePost'>;
+
+export default function CreatePost({ navigation }: props) {
     const [postText, setPostText] = useState('')
     return (
         <>
@@ -14,14 +18,9 @@ export default function CreatePost({ navigation, route }) {
             <Button
                 title="Done"
                 onPress={() => {
-                    navigation.navigate({
-                        name: 'Home',
-                        params: { post: postText },
-                        merge: true,
-                    });
+                    navigation.navigate('Home', { post: postText });
                 }}
-            >
-            </Button>
+            />
         </>
     );
 }
