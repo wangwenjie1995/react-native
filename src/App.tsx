@@ -1,17 +1,18 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import StackRouter from './navigation/StackRouter';
-// import {ThemeProvider} from 'react-native-elements';
+import { ThemeProvider } from 'react-native-elements';
 
 function App() {
   return (
-    // <ThemeProvider>
+    <ThemeProvider>
       <NavigationContainer>
         <StackRouter></StackRouter>
       </NavigationContainer>
-    // </ThemeProvider>
+    </ThemeProvider>
+
   );
 }
 

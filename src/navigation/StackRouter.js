@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Platform } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Platform} from 'react-native';
 import Home from '../views/home';
 import SafeScreen from '../views/safeScreen';
 import ListScreen from '../views/listScreen';
@@ -8,7 +8,8 @@ import CreatePost from '../views/createPost';
 import TabNavigation from '../views/tabNavigation';
 
 // 根据平台选用 navigator
-const Stack = Platform.OS === 'web' ? createStackNavigator() : createNativeStackNavigator();
+const Stack =
+  Platform.OS === 'web' ? createStackNavigator() : createNativeStackNavigator();
 
 export default function StackRouter() {
   return (
