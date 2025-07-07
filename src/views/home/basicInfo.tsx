@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#F0F0F0',
     },
     footer: {
-        marginTop: 11,
+        marginTop: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
