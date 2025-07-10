@@ -1,5 +1,4 @@
 // src/views/home/basicInfo.tsx
-import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 // import { Ionicons } from '@expo/vector-icons';
 interface Tag {
@@ -8,7 +7,7 @@ interface Tag {
 }
 interface SimplePostCardProps {
     username: string
-    avatarUrl: string
+    avatar: string
     time: string
     title: string
     likes: number
@@ -16,14 +15,14 @@ interface SimplePostCardProps {
     onLike: () => void
 }
 
-const SimplePostCard = ({ username, time, title, likes, tags, avatarUrl, onLike }: SimplePostCardProps) => {
+const SimplePostCard = ({ username, time, title, likes, tags, avatar, onLike }: SimplePostCardProps) => {
     return (
         <View style={styles.card}>
             <Text style={styles.title}>{title}</Text>
 
-            <View style={styles.content}>
+            <View style={styles.tagsContainer}>
                 {tags.map((item, index) => (
-                    <View key={index} style={styles.tagContainer}>
+                    <View key={index} style={styles.tag}>
                         <Text style={styles.tagText}>{item.name}</Text>
                         <Text style={[
                             styles.tagText,
@@ -39,9 +38,10 @@ const SimplePostCard = ({ username, time, title, likes, tags, avatarUrl, onLike 
                 <View style={styles.leftContent}>
                     {/* 圆形头像 */}
                     <Image
-                        source={{ uri: avatarUrl }}
+                        source={{ uri: avatar }}
                         style={styles.avatar}
                         defaultSource={require('./avatar.jpeg')}
+                        resizeMode="cover"
                     />
                     {/* 用户名和时间 */}
                     <Text style={styles.username}>{username}</Text>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#F0F0F0',
     },
     footer: {
-        marginTop: 12,
+        marginTop: 11,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -99,12 +99,12 @@ const styles = StyleSheet.create({
         color: '#333333',
         fontWeight: 500,
     },
-    content: {
+    tagsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 7,
     },
-    tagContainer: {
+    tag: {
         flexDirection: 'row',
         height: 18,
         borderRadius: 2,

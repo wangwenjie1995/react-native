@@ -1,40 +1,66 @@
 // 右侧配图帖子组件
-import React from 'react';
+// src/views/home/basicInfo2.tsx
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 // import { Ionicons } from '@expo/vector-icons';
-
+interface Tag {
+    name: string
+    value: number
+}
 interface RightImagePostCardProps {
     username: string
+    avatar: string
+    image: string
     time: string
-    content: string
+    title: string
     likes: number
-    imageUrl: string
+    tags: Tag[]
     onLike: () => void
 }
-const RightImagePostCard = ({ username, time, content, likes, imageUrl, onLike }: RightImagePostCardProps) => {
+
+const RightImagePostCard = ({ username, time, title, likes, tags, avatar, onLike }: RightImagePostCardProps) => {
     return (
         <View style={styles.card}>
-            <View style={styles.contentContainer}>
-                <Text style={styles.content}>{content}</Text>
+            <View style={styles.content}>
+                <View style={styles.contentLeft}>
+                    <Text style={styles.title}>{title}</Text>
+                    <View style={styles.tagsContainer}>
+                        {tags.map((item, index) => (
+                            <View key={index} style={styles.tag}>
+                                <Text style={styles.tagText}>{item.name}</Text>
+                                <Text style={[
+                                    styles.tagText,
+                                    styles.tagValue,
+                                    item.value > 0 ? styles.positive : styles.negative
+                                ]}>
+                                    {item.value > 0 ? '+' : ''}{item.value}%
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                </View> 
+                
                 <Image
-                    source={{ uri: imageUrl }}
+                    source={{ uri: avatar }}
                     style={styles.rightImage}
+                    defaultSource={require('./avatar.jpeg')}
                     resizeMode="cover"
                 />
             </View>
-
             <View style={styles.footer}>
-                <View style={styles.bioTechInfo}>
-                    <Text style={styles.bioTechText}>生物科技 0.61%</Text>
-                    <Text style={[styles.bioTechText, { color: '#ff4d4f' }]}>生物科技 -1.21%</Text>
+                <View style={styles.leftContent}>
+                    {/* 圆形头像 */}
+                    <Image
+                        source={{ uri: avatar }}
+                        style={styles.avatar}
+                        defaultSource={require('./avatar.jpeg')}
+                        resizeMode="cover"
+                    />
+                    {/* 用户名和时间 */}
+                    <Text style={styles.username}>{username}</Text>
+                    <Text style={styles.time}>{time}</Text>
                 </View>
-            </View>
-            <View style={styles.header}>
-                <Text style={styles.username}>{username}</Text>
-                <Text style={styles.time}>{time}</Text>
                 <TouchableOpacity onPress={onLike} style={styles.likeButton}>
-                    {/* <Ionicons name="heart-outline" size={20} color="#666" /> */}
-                    23
+                    <Text style={styles.likeIcon}>♥</Text>
                     <Text style={styles.likeCount}>{likes}</Text>
                 </TouchableOpacity>
             </View>
@@ -45,67 +71,98 @@ const RightImagePostCard = ({ username, time, content, likes, imageUrl, onLike }
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
-        borderRadius: 8,
-        padding: 16,
-        marginBottom: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        marginBottom: 12,
-        fontSize: 15,
-        fontWeight: 500,
-        color: '#333333',
-    },
-    username: {
-        fontWeight: 'bold',
-        fontSize: 16,
-    },
-    time: {
-        color: '#999',
-        fontSize: 14,
-    },
-    contentContainer: {
-        flexDirection: 'row',
-        marginBottom: 16,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F0F0F0',
     },
     content: {
-        fontSize: 15,
-        lineHeight: 22,
+        flexDirection: 'row',
+    },
+    contentLeft: {
         flex: 1,
-        paddingRight: 12,
     },
     rightImage: {
         width: 100,
-        height: 80,
+        height: 60,
         borderRadius: 6,
     },
     footer: {
+        marginTop: 11,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    bioTechInfo: {
+    leftContent: {
         flexDirection: 'row',
-        gap: 12,
+        alignItems: 'center',
     },
-    bioTechText: {
-        fontSize: 14,
+    avatar: {
+        width: 15,
+        height: 15,
+        borderRadius: 7.5, // 圆形半径
+        backgroundColor: '#DDD', // 默认灰色背景，您可以用图片替换
+        marginRight: 4,
+    },
+    username: {
+        fontSize: 11,
+        lineHeight: 15,
+        color: '#3D3D3D',
+        marginRight: 5,
+    },
+    time: {
+        color: '#AAAAAA',
+        fontSize: 10,
+        lineHeight: 15,
+    },
+    title: {
+        fontSize: 15,
+        lineHeight: 21,
+        marginBottom: 10,
+        color: '#333333',
+        fontWeight: 500,
+    },
+    tagsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 7,
+    },
+    tag: {
+        flexDirection: 'row',
+        height: 18,
+        borderRadius: 2,
+        backgroundColor: '#F5F6F6',
+        alignItems: 'center',
+        paddingHorizontal: 5,
+        fontSize: 11,
+    },
+    tagText: {
+        fontSize: 11,
         color: '#666',
+    },
+    tagValue: {
+        fontSize: 11,
+        marginLeft: 5, // 名称和数值之间的间距
+    },
+    positive: {
+        color: '#ED4936', // 正数红色
+    },
+    negative: {
+        color: '#17B03E', // 负数绿色
     },
     likeButton: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 4,
     },
+    likeIcon: {
+        fontSize: 11,
+        color: '#AAAAAA',
+    },
     likeCount: {
-        fontSize: 14,
-        color: '#666',
+        fontSize: 11,
+        lineHeight: 15,
+        color: '##AAAAAA',
     },
 });
 
